@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "524486475205",
+    "firebase_url": "https://cleverroom-yeet.firebaseio.com",
+    "project_id": "cleverroom-yeet",
+    "storage_bucket": "cleverroom-yeet.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:524486475205:android:614fd3cfc7e900be641fac",
+        "android_client_info": {
+          "package_name": "get.bamboozled"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "524486475205-jca4aqnn8ss8pco3jqu83r706lcnlrs9.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "get.bamboozled",
+            "certificate_hash": "2da74d0d9ad4d41a5b8a3895574faf2efe785eec"
+          }
+        },
+        {
+          "client_id": "524486475205-rs9jlicbruvcoipv718jfrugln73ldrp.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAWz1FsmiM7vkBqBz5r5tBd6HpMoI3VhCY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "524486475205-rs9jlicbruvcoipv718jfrugln73ldrp.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

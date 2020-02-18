@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity"
+    android:background="#E1D5D5">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#000"
+        android:id="@+id/darkbackground"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginStart="40dp"
+        android:layout_marginEnd="40dp">
+        <ImageView
+            android:layout_gravity="center"
+            android:visibility="invisible"
+            android:padding="45dp"
+            android:id="@+id/bulb"
+            android:clickable="true"
+            android:focusable="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+    </LinearLayout>
+
+    <TextView
+        android:layout_gravity="center_horizontal|top"
+        android:layout_marginTop="30dp"
+        android:text="Offline"
+        android:paddingStart="10dp"
+        android:paddingEnd="10dp"
+        android:paddingTop="3dp"
+        android:paddingBottom="3dp"
+        android:textSize="19sp"
+        android:id="@+id/onlineoffline"
+        android:textColor="@color/red"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+    <ImageView
+        android:visibility="invisible"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/her"
+        android:layout_gravity="center_vertical|start"/>
+    <ImageView
+        android:visibility="invisible"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/him"
+        android:layout_gravity="center_vertical|end"/>
+</FrameLayout>
