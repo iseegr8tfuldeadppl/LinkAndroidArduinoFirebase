@@ -105,8 +105,9 @@ def on_press(key):
 def on_release(key):
     global halt
     if key == keyboard.Key.esc: # REMOVE ME REMOVE ME REMOVE ME REMOVE ME REMOVE ME REMOVE ME REMOVE ME REMOVE ME REMOVE ME REMOVE ME REMOVE ME REMOVE ME REMOVE ME REMOVE ME REMOVE ME REMOVE ME REMOVE ME REMOVE ME REMOVE ME
-        halt = True
-        return False
+        pass
+	#    halt = True
+    #    return False
 
 with keyboard.Listener(on_press=on_press,on_release=on_release) as listener:listener.join()
 listener = keyboard.Listener(on_press=on_press,on_release=on_release)
