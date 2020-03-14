@@ -22,43 +22,69 @@ firebase_admin.initialize_app(cred, {
     'databaseURL': 'https://cleverroom-yeet.firebaseio.com/'
 })
 
+computersidereference = db.reference('/controlpanel/computerside/')
+appsidereference = db.reference('/controlpanel/appside/')
 
 def updateComputerSide():
     global computersidereference
     t = localtime()
     current_time = strftime("%d/%m/%Y %H:%M:%S", t)
 
-    if isturnedoff:
-        computersidereference.set({
-                'state': "off",
-                'lastseen': str(current_time)
+    try:
+        if isturnedoff:
+            computersidereference.set({
+                    'state': "off",
+                    'lastseen': str(current_time)
+                })
+        else:
+            computersidereference.set({
+                    'state': "on",
+                    'lastseen': str(current_time)
+                })
+    except:
+        try:
+            # Fetch the service account key JSON file contents
+            cred = credentials.Certificate('cleverroom-yeet-firebase-adminsdk-d6q4g-6df49f7c01.json')
+            # Initialize the app with a service account, granting admin privileges
+            firebase_admin.initialize_app(cred, {
+                'databaseURL': 'https://cleverroom-yeet.firebaseio.com/'
             })
-    else:
-        computersidereference.set({
-                'state': "on",
-                'lastseen': str(current_time)
-            })
+            computersidereference = db.reference('/controlpanel/computerside/')
+            appsidereference = db.reference('/controlpanel/appside/')
+        except:
+            pass
 
 def checkAppSide():
     global appsidereference
     global isturnedoff
     global ser
-    mostrecentrequest = appsidereference.child("mostrecentrequest").get()
     try:
-        if str(mostrecentrequest)=="on":
-            isturnedoff = False
-            ser.write(on.encode())
-        elif str(mostrecentrequest)=="off":
-            isturnedoff = True
-            ser.write(off.encode())
+        mostrecentrequest = appsidereference.child("mostrecentrequest").get()
+        try:
+            if str(mostrecentrequest)=="on":
+                isturnedoff = False
+                ser.write(on.encode())
+            elif str(mostrecentrequest)=="off":
+                isturnedoff = True
+                ser.write(off.encode())
+        except:
+            ser.close()
+            ser = serial.Serial('COM8', 9600)
+            sleep(2)
+            print("failed to get info from Firebase checkAppSide()")
     except:
-        ser.close()
-        ser = serial.Serial('COM8', 9600)
-        sleep(2)
-        print("failed to get info from Firebase checkAppSide()")
+        try:
+            # Fetch the service account key JSON file contents
+            cred = credentials.Certificate('cleverroom-yeet-firebase-adminsdk-d6q4g-6df49f7c01.json')
+            # Initialize the app with a service account, granting admin privileges
+            firebase_admin.initialize_app(cred, {
+                'databaseURL': 'https://cleverroom-yeet.firebaseio.com/'
+            })
+            computersidereference = db.reference('/controlpanel/computerside/')
+            appsidereference = db.reference('/controlpanel/appside/')
+        except:
+            pass
 
-computersidereference = db.reference('/controlpanel/computerside/')
-appsidereference = db.reference('/controlpanel/appside/')
 
 def FirebaseUpdater():
     global halt
@@ -72,35 +98,61 @@ thread.start()
 
 
 
-
-
 # keyboard things
 def on_press(key):
     global isturnedoff
     global ser
     if str(key).find("end")>-1:
         if isturnedoff:
-            isturnedoff = False
-            appsidereference.set({
-                    'mostrecentrequest': "on"
-                })
             try:
-                ser.write(off.encode())
+                appsidereference = db.reference('/controlpanel/appside/')
+                appsidereference.set({
+                        'mostrecentrequest': "on"
+                    })
+                isturnedoff = False
+                try:
+                    ser.write(off.encode())
+                except:
+                    ser.close()
+                    ser = serial.Serial('COM8', 9600)
+                    sleep(2)
             except:
-                ser.close()
-                ser = serial.Serial('COM8', 9600)
-                sleep(2)
+                try:
+                    # Fetch the service account key JSON file contents
+                    cred = credentials.Certificate('cleverroom-yeet-firebase-adminsdk-d6q4g-6df49f7c01.json')
+                    # Initialize the app with a service account, granting admin privileges
+                    firebase_admin.initialize_app(cred, {
+                        'databaseURL': 'https://cleverroom-yeet.firebaseio.com/'
+                    })
+                    computersidereference = db.reference('/controlpanel/computerside/')
+                    appsidereference = db.reference('/controlpanel/appside/')
+                except:
+                    pass
         else:
-            isturnedoff = True
-            appsidereference.set({
-                    'mostrecentrequest': "off"
-                })
             try:
-                ser.write(off.encode())
+                appsidereference = db.reference('/controlpanel/appside/')
+                appsidereference.set({
+                        'mostrecentrequest': "off"
+                    })
+                isturnedoff = True
+                try:
+                    ser.write(off.encode())
+                except:
+                    ser.close()
+                    ser = serial.Serial('COM8', 9600)
+                    sleep(2)
             except:
-                ser.close()
-                ser = serial.Serial('COM8', 9600)
-                sleep(2)
+                try:
+                    # Fetch the service account key JSON file contents
+                    cred = credentials.Certificate('cleverroom-yeet-firebase-adminsdk-d6q4g-6df49f7c01.json')
+                    # Initialize the app with a service account, granting admin privileges
+                    firebase_admin.initialize_app(cred, {
+                        'databaseURL': 'https://cleverroom-yeet.firebaseio.com/'
+                    })
+                    computersidereference = db.reference('/controlpanel/computerside/')
+                    appsidereference = db.reference('/controlpanel/appside/')
+                except:
+                    pass
 
 def on_release(key):
     global halt

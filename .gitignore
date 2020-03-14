@@ -3,3 +3,8 @@
 /cleverroom-yeet-firebase-adminsdk-d6q4g-6df49f7c01.json
 /AppCode/app/google-services.json
 /pythonCodeThatChecksFirebaseAndAppliesToArduino.exe
+/build
+/dist
+/__pycache__
+/google-services.json
+/pythonCodeThatChecksFirebaseAndAppliesToArduino.spec

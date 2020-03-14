@@ -7,6 +7,7 @@ String input;
 void loop() {
   if(Serial.available()){
     input = Serial.read();
+    Serial.println(input);
     if(input.toInt()==49)
       digitalWrite(A0, HIGH);
     else if(input.toInt()==48)
